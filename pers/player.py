@@ -14,6 +14,9 @@ class Player(pygame.sprite.Sprite):
         self.y = y
         self.last_hp = 100
         self.hp = 100
+        self.lucky = 5
+        self.strong = 0
+        self.agility = 0
         self.x_size = x_size
         self.y_size = y_size
         self.image = pygame.Surface(size_player)

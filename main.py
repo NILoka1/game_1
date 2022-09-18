@@ -46,7 +46,7 @@ def main():
     generation.generation_lvl(objects, my_list, ships, hp_block, mobs)
 
     tik = 0
-
+    tik_shot = 0
     while True:
 
         for event in pygame.event.get():
@@ -54,9 +54,10 @@ def main():
                 raise SystemExit("QUIT")
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    direct = direction(walk_x, walk_y)
-                    bullets.add(bullet(players.rect[0], players.rect[1], direct))
-
+                    if tik_shot <= 0:
+                        direct = direction(walk_x, walk_y)
+                        bullets.add(bullet(players.rect[0], players.rect[1], direct))
+                        tik_shot = 30
             walk_x, walk_y = walk_direction(event, walk_x, walk_y)
             cam_x, cam_y = cam_direction(event, cam_x, cam_y)
 
@@ -84,6 +85,7 @@ def main():
         hp_info.sled(players.rect[0], players.rect[1])
 
         tik -= 1
+        tik_shot -= 1
         hp_block.draw(screen)
         bullets.draw(screen)
         hp_info_bg.draw(screen)
@@ -99,8 +101,8 @@ def main():
 if __name__ == '__main__':
     main()
 
-# реализовать диоганаль *
-# реализовать получение урона персу *
+#
+#
 # сделать несколько классов для наследования
 # посмотреть алгоритм поиска в глубину и ширину
 # архитектура проекта

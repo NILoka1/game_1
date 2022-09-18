@@ -1,4 +1,5 @@
 import pygame
+import random
 from level.objects import cam
 
 
@@ -34,15 +35,21 @@ class bullet(pygame.sprite.Sprite):
         self.direction = direction
 
 
-    def damage(self,hp_block,mobs):
+    def damage(self,hp_block,mobs,players):
         for i in (hp_block,mobs):
             for block in i:
-                if pygame.sprite.collide_rect(block,self):
-                    block.hp -=10
-                    self.kill()
-                    if block.hp == 0:
-                        block.kill()
-
+                if random.randint(0,100) < players.lucky:
+                    if pygame.sprite.collide_rect(block,self):
+                        block.hp -=15
+                        self.kill()
+                        if block.hp == 0:
+                            block.kill()
+                else:
+                    if pygame.sprite.collide_rect(block, self):
+                        block.hp -= 10
+                        self.kill()
+                        if block.hp == 0:
+                            block.kill()
 
     def plane(self, obj):
         for block in obj:

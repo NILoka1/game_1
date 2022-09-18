@@ -21,6 +21,6 @@ def help_bullets(bullets,objects):
 
 def help_damage(bullets,hp_block,mobs,players):
     for bull in bullets:
-        bull.damage(hp_block, mobs)
+        bull.damage(hp_block, mobs,players)
     for mob in mobs:
         mob.damage(players)
