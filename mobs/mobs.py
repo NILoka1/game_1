@@ -16,11 +16,46 @@ class zombie(pygame.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
 
-
-    def damage(self,players):
-        if pygame.sprite.collide_rect(self,players):
+    def damage(self, players):
+        if pygame.sprite.collide_rect(self, players):
             players.hp -= 10
             if players.hp <= 0:
                 players.kill()
 
+    def mob_walk(self, players):
+        x_p = players.rect[0]
+        y_p = players.rect[1]
 
+        if self.rect[1] > y_p and self.rect[0] > x_p:
+            self.rect[1] -= 1
+            self.rect[0] -= 1
+        elif self.rect[1] > y_p and self.rect[0] < x_p:
+            self.rect[1] -= 1
+            self.rect[0] += 1
+        elif self.rect[1] < y_p and self.rect[0] > x_p:
+            self.rect[1] += 1
+            self.rect[0] -= 1
+        elif self.rect[1] < y_p and self.rect[0] < x_p:
+            self.rect[1] += 1
+            self.rect[0] += 1
+        else:
+            if self.rect[1] > y_p:
+                self.rect[1] -= 2
+            if self.rect[1] < y_p:
+                self.rect[1] += 2
+
+            if self.rect[0] > x_p:
+                self.rect[0] -= 2
+            if self.rect[0] < x_p:
+                self.rect[0] += 2
+
+
+    def cam(self, x, y):
+        if x[0]:
+            self.rect[0] += 2
+        if x[1]:
+            self.rect[0] -= 2
+        if y[1]:
+            self.rect[1] += 2
+        if y[0]:
+            self.rect[1] -= 2

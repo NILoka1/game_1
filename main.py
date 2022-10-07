@@ -57,13 +57,13 @@ def main():
                     if tik_shot <= 0:
                         direct = direction(walk_x, walk_y)
                         bullets.add(bullet(players.rect[0], players.rect[1], direct))
-                        tik_shot = 30
+                        tik_shot = 100/players.agility
             walk_x, walk_y = walk_direction(event, walk_x, walk_y)
             cam_x, cam_y = cam_direction(event, cam_x, cam_y)
 
-
-
-        help.help_cam(objects,ships,hp_block,cam_x,cam_y,players,bullets)
+        print(players.rect)
+        help.help_mob_walk(mobs,players)
+        help.help_cam(objects,ships,hp_block,cam_x,cam_y,players,bullets,mobs)
         help.help_bullets(bullets,objects)
         help.help_damage(bullets,hp_block,mobs,players)
 

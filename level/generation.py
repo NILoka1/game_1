@@ -30,7 +30,7 @@ level = [
 size = [15, 15]
 
 
-def generation_lvl(objects, my_list: list,ships_m,hp_block,zombies):
+def generation_lvl(objects, my_list: list,ships,hp_block,zombies):
     x_pf = y_pf = 0
     for row in level:
         for col in row:
